@@ -1,5 +1,6 @@
 package com.assignment.employeerecord.entity;
 
+import com.assignment.employeerecord.entity.compositekey.DeptId;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
+@IdClass(DeptId.class)
 @Table(name = "dept_emp")
 public class DeptEmp {
    
