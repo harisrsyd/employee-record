@@ -1,10 +1,18 @@
 package com.assignment.employeerecord.repository;
 
+import com.assignment.employeerecord.entity.DeptEmp;
 import com.assignment.employeerecord.entity.DeptManager;
+import com.assignment.employeerecord.entity.Employee;
 import com.assignment.employeerecord.entity.compositekey.DeptId;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDate;
 
 @Repository
 public interface DeptManagerRepository extends JpaRepository<DeptManager, DeptId> {
+   
+   @Query(value = "SELECT * FROM dept_manager WHERE emp_no = ?1 AND to_date = ?2", nativeQuery = true)
+   DeptManager findByEmpNoLatest(Employee emp, LocalDate toDate);
 }

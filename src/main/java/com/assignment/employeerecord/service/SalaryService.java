@@ -29,7 +29,7 @@ public class SalaryService {
    
    @Transactional
    public void updateLatestSalary(Employee employee) {
-      Salary salary = salaryRepository.findByEmpNoAndToDateMatches(employee, LocalDate.of(9999, 1, 1));
+      Salary salary = salaryRepository.findByEmpNoLatest(employee, LocalDate.of(9999, 1, 1));
       salary.setToDate(LocalDate.now());
       salaryRepository.save(salary);
    }

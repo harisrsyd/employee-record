@@ -30,7 +30,7 @@ public class DeptEmpService {
    
    @Transactional
    public void updateLatestDeptEmp(Employee employee) {
-      DeptEmp deptEmp = deptEmpRepository.findByEmpNoAndToDateMatches(employee, LocalDate.of(9999, 1, 1));
+      DeptEmp deptEmp = deptEmpRepository.findByEmpNoLatest(employee, LocalDate.of(9999, 1, 1));
       deptEmp.setToDate(LocalDate.now());
       deptEmpRepository.save(deptEmp);
    }

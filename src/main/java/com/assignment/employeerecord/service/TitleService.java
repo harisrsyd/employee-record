@@ -12,9 +12,11 @@ import java.time.LocalDate;
 public class TitleService {
    
    private TitleRepository titleRepository;
+   private DeptManagerService deptManagerService;
    
-   public TitleService(TitleRepository titleRepository) {
+   public TitleService(TitleRepository titleRepository, DeptManagerService deptManagerService) {
       this.titleRepository = titleRepository;
+      this.deptManagerService = deptManagerService;
    }
    
    @Transactional
@@ -28,8 +30,11 @@ public class TitleService {
    
    @Transactional
    public void updateLatestTitle(Employee employee) {
-      Title title = titleRepository.findByEmpNoAndToDateMatches(employee, LocalDate.of(9999, 1, 1));
+      Title title = titleRepository.findByEmpNoLatest(employee, LocalDate.of(9999, 1, 1));
       title.setToDate(LocalDate.now());
       titleRepository.save(title);
+      if (title.getTitle().equalsIgnoreCase("Manager")) {
+         deptManagerService.updateLatestDeptManager(employee);
+      }
    }
 }

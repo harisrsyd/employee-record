@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @Getter
@@ -18,13 +20,13 @@ public class EmployeesResponse {
    
    private String fullName;
    
-   private Integer age;
+   private BigDecimal age;
    
    private String title;
    
    private String department;
    
-   private LocalDate hireDate;
+   private Date hireDate;
    
    private Integer salary;
 }

@@ -27,4 +27,11 @@ public class DeptManagerService {
       deptManager.setToDate(LocalDate.of(9999, 1,1));
       deptManagerRepository.save(deptManager);
    }
+   
+   @Transactional
+   public void updateLatestDeptManager(Employee employee) {
+      DeptManager deptManager = deptManagerRepository.findByEmpNoLatest(employee, LocalDate.of(9999,1,1));
+      deptManager.setToDate(LocalDate.now());
+      deptManagerRepository.save(deptManager);
+   }
 }

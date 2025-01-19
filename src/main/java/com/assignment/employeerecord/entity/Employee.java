@@ -26,6 +26,7 @@ public class Employee {
    private String lastName;
    
    @Column(nullable = false)
+   @Enumerated(EnumType.STRING)
    private Gender gender;
    
    @Column(nullable = false)
