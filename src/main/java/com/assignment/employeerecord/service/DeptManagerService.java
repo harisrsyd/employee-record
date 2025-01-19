@@ -3,7 +3,6 @@ package com.assignment.employeerecord.service;
 import com.assignment.employeerecord.entity.Department;
 import com.assignment.employeerecord.entity.DeptManager;
 import com.assignment.employeerecord.entity.Employee;
-import com.assignment.employeerecord.repository.DepartmentRepository;
 import com.assignment.employeerecord.repository.DeptManagerRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
