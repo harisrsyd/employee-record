@@ -12,6 +12,9 @@ CREATE TABLE employees (
                            PRIMARY KEY (emp_no)
 );
 
+ALTER TABLE employees
+    ADD is_deleted BOOLEAN NOT NULL DEFAULT FALSE;
+
 CREATE TABLE departments (
                              dept_no     CHAR(4)         NOT NULL,
                              dept_name   VARCHAR(40)     NOT NULL,
