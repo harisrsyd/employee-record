@@ -22,7 +22,7 @@ public class DeptEmp {
    @Id
    @ManyToOne
    @JoinColumn(name = "dept_no", nullable = false)
-   private Employee deptNo;
+   private Department deptNo;
    
    @Column(nullable = false)
    private LocalDate fromDate;

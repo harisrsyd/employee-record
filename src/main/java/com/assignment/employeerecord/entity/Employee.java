@@ -14,7 +14,6 @@ public class Employee {
    
    @Id
    @Column(nullable = false, unique = true)
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer empNo;
    
    @Column(nullable = false)
@@ -31,4 +30,7 @@ public class Employee {
    
    @Column(nullable = false)
    private LocalDate hireDate;
+   
+   @Column(nullable = false, name = "is_deleted")
+   private boolean isDeleted = false;
 }
