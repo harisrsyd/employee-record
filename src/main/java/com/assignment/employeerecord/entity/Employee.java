@@ -1,8 +1,10 @@
 package com.assignment.employeerecord.entity;
 
+import io.hypersistence.utils.hibernate.type.basic.PostgreSQLEnumType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDate;
 
@@ -25,8 +27,9 @@ public class Employee {
    @Column(nullable = false, length = 16)
    private String lastName;
    
-   @Column(nullable = false)
    @Enumerated(EnumType.STRING)
+   @Column(columnDefinition = "gender")
+   @Type(PostgreSQLEnumType.class)
    private Gender gender;
    
    @Column(nullable = false)
