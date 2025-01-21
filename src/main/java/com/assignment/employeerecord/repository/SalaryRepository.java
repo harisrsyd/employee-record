@@ -8,10 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface SalaryRepository extends JpaRepository<Salary, SalaryId> {
    
    @Query(value = "SELECT * FROM salaries WHERE emp_no = ?1 AND to_date = ?2", nativeQuery = true)
    Salary findByEmpNoLatest(Employee emp, LocalDate toDate);
+   
+   List<Salary> findSalaryHistoryByEmpNo(Employee empNo);
 }
