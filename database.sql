@@ -1,19 +1,22 @@
 DROP DATABASE IF EXISTS employee_record;
 CREATE DATABASE employee_record;
 
-CREATE TYPE GENDER AS ENUM ('MALE', 'FEMALE');
+-- CREATE TYPE GENDER AS ENUM ('MALE', 'FEMALE');
 CREATE TABLE employees (
                            emp_no      INT             NOT NULL,
                            birth_date  DATE            NOT NULL,
                            first_name  VARCHAR(14)     NOT NULL,
                            last_name   VARCHAR(16)     NOT NULL,
-                           gender      GENDER          NOT NULL,
+                           gender      VARCHAR          NOT NULL,
                            hire_date   DATE            NOT NULL,
                            PRIMARY KEY (emp_no)
 );
 
 ALTER TABLE employees
     ADD is_deleted BOOLEAN NOT NULL DEFAULT FALSE;
+
+-- ALTER TABLE employees
+--     ALTER COLUMN gender TYPE VARCHAR USING GENDER::VARCHAR;
 
 CREATE TABLE departments (
                              dept_no     CHAR(4)         NOT NULL,
