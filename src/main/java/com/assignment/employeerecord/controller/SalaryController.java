@@ -4,9 +4,7 @@ import com.assignment.employeerecord.model.DetailSalary;
 import com.assignment.employeerecord.model.WebResponse;
 import com.assignment.employeerecord.service.SalaryService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +18,27 @@ public class SalaryController {
       this.salaryService = salaryService;
    }
    
-   @GetMapping("/salaries")
-   public WebResponse<List<DetailSalary>> getAllSalariesByEmpNo(Integer EmpNo) {
+   @GetMapping("/salaries/{EmpNo}")
+   public WebResponse<List<DetailSalary>> getAllSalariesByEmpNo(@PathVariable Integer EmpNo) {
       List<DetailSalary> salaries = salaryService.getSalaryHistoryByEmpNo(EmpNo);
       return WebResponse.<List<DetailSalary>>builder().status(HttpStatus.OK.value()).data(salaries).build();
+   }
+   
+   @PostMapping("/salaries")
+   public WebResponse<DetailSalary> addNewSalary(@RequestBody DetailSalary request) {
+      DetailSalary salary = salaryService.addNewSalary(request);
+      return WebResponse.<DetailSalary>builder().status(HttpStatus.CREATED.value()).data(salary).build();
+   }
+   
+   @PutMapping("/salaries/updatelatest")
+   public WebResponse<DetailSalary> updateLatestExistingSalary(@RequestBody DetailSalary request) {
+      DetailSalary salary = salaryService.updateExistingSalary(request);
+      return WebResponse.<DetailSalary>builder().status(HttpStatus.OK.value()).data(salary).build();
+   }
+   
+   @DeleteMapping("/salaries/delete")
+   public WebResponse<String> deleteSalary(@RequestBody DetailSalary request) {
+      salaryService.deleteSalary(request);
+      return WebResponse.<String>builder().status(HttpStatus.OK.value()).data("Salary data deleted Successfully").build();
    }
 }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -113,7 +114,7 @@ public class EmployeeService {
       
       deptEmpService.updateLatestDeptEmp(employee);
       titleService.updateLatestTitle(employee);
-      salaryService.updateLatestSalary(employee);
+      salaryService.updateLatestSalary(employee, LocalDate.now());
       
       return "Employee with record: " + empNo + ". " + employee.getFirstName() + " " + employee.getLastName() + " deleted successfully";
    }
