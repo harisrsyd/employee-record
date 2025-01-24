@@ -112,8 +112,8 @@ public class EmployeeService {
       employee.setDeleted(true);
       employeeRepository.save(employee);
       
-      deptEmpService.updateLatestDeptEmp(employee);
-      titleService.updateLatestTitle(employee);
+      deptEmpService.updateLatestDeptEmp(employee, LocalDate.now());
+      titleService.updateLatestTitle(employee, LocalDate.now());
       salaryService.updateLatestSalary(employee, LocalDate.now());
       
       return "Employee with record: " + empNo + ". " + employee.getFirstName() + " " + employee.getLastName() + " deleted successfully";

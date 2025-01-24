@@ -29,9 +29,9 @@ public class DeptEmpService {
    }
    
    @Transactional
-   public void updateLatestDeptEmp(Employee employee) {
+   public void updateLatestDeptEmp(Employee employee, LocalDate date) {
       DeptEmp deptEmp = deptEmpRepository.findByEmpNoLatest(employee, LocalDate.of(9999, 1, 1));
-      deptEmp.setToDate(LocalDate.now());
+      deptEmp.setToDate(date);
       deptEmpRepository.save(deptEmp);
    }
    
